@@ -52,9 +52,18 @@ const changeColor = (color = 'rgb(0,0,0)') => {
 
 const codes = (codes) => {
     tools.innerHTML = '';
+   
     codes.map(color => {
         let div = document.createElement('div');
-        div.setAttribute('onclick', `changeColor("${color.rgb}")`);
+        div.addEventListener('click', () => { 
+            document.querySelectorAll('.toolbar .color div').forEach(div => {
+               div.style.border = 'none'
+               div.style.borderRadius = '0' 
+            })
+            changeColor(color.rgb)
+            div.style.border = '2px solid #fff'
+            div.style.borderRadius = '50%'
+        })
         div.style.backgroundColor = color.rgb;
         tools.appendChild(div);
     })
