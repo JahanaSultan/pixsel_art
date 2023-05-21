@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -18,10 +19,12 @@
             <h1>Pixsel Art</h1>
             <div class="toolbar">
                 <div class="color"></div>
-                <button class="btn" id="reset" onclick="erase()">Reset</button>
-                <button class="btn" id="random">Random Color</button>
-                <button class="btn" id="eraser" onclick="eraser()">Eraser</button>
-                <button class="btn" id="save" onclick="save()">Download</button>
+                <div class="buttons">
+                    <button class="btn" id="reset" onclick="reset()">Reset <i class="ri-refresh-line"></i></button>
+                    <button class="btn" id="random">Random Color <i class="ri-recycle-line"></i></button>
+                    <button class="btn" id="eraser" onclick="eraser()">Eraser <i class="ri-eraser-line"></i></button>
+                    <button class="btn" id="save" onclick="save()">Download <i class="ri-download-line"></i></button>
+                </div>
             </div>
         </div>
         <div class="art">

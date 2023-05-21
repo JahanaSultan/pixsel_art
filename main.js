@@ -19,7 +19,7 @@
 // ]
 
 fetch(
-    'https://x-colors.yurace.pro/api/random?number=174'
+    'https://x-colors.yurace.pro/api/random?number=116'
 ).then(
     response => response.json()
 ).then(
@@ -60,9 +60,7 @@ codes.map(color => {
     div.setAttribute('onclick', `changeColor("${color.rgb}")`);
     div.style.backgroundColor = color.rgb;
     tools.appendChild(div);
-})
-
-}
+})}
 
 function selectColor() {
     document.querySelectorAll('.toolbar .color div').forEach(div => {
