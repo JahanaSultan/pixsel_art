@@ -18,16 +18,18 @@
 // "rgb(239, 65, 255)",
 // ]
 
-fetch(
-    'https://x-colors.yurace.pro/api/random?number=116'
-).then(
-    response => response.json()
-).then(
-    data => {
-       codes(data)
-    }
-)
-
+function fetchColors() {
+    fetch(
+        'https://x-colors.yurace.pro/api/random?number=116'
+    ).then(
+        response => response.json()
+    ).then(
+        data => {
+            codes(data)
+        }
+    )
+}
+fetchColors();
 let tools = document.querySelector('.toolbar .color');
 var container = document.querySelector('.art');
 var artSize = 80;
@@ -45,7 +47,7 @@ function createPixelArt() {
     changeColor();
 }
 
-function changeColor(color='rgb(0,0,0)') {
+function changeColor(color = 'rgb(0,0,0)') {
     document.querySelectorAll('.art div').forEach(function (square) {
         square.addEventListener('click', function () {
             square.style.backgroundColor = color
@@ -54,13 +56,15 @@ function changeColor(color='rgb(0,0,0)') {
     scroll(color);
 }
 
-function codes(codes){
-codes.map(color => {
-    let div = document.createElement('div');
-    div.setAttribute('onclick', `changeColor("${color.rgb}")`);
-    div.style.backgroundColor = color.rgb;
-    tools.appendChild(div);
-})}
+function codes(codes) {
+    tools.innerHTML = '';
+    codes.map(color => {
+        let div = document.createElement('div');
+        div.setAttribute('onclick', `changeColor("${color.rgb}")`);
+        div.style.backgroundColor = color.rgb;
+        tools.appendChild(div);
+    })
+}
 
 function selectColor() {
     document.querySelectorAll('.toolbar .color div').forEach(div => {
@@ -75,39 +79,39 @@ selectColor();
 createPixelArt();
 window.addEventListener('resize', createPixelArt);
 
-function scroll(color){
-var divs = [...document.querySelectorAll('.art div')];
-let mouseDown = false;
+function scroll(color) {
+    var divs = [...document.querySelectorAll('.art div')];
+    let mouseDown = false;
 
-divs.map(div=>div.onmousedown = function(){
-    mouseDown = true;
-})
+    divs.map(div => div.onmousedown = function () {
+        mouseDown = true;
+    })
 
-divs.map(div=>div.onmouseup = function(){
-    mouseDown = false;
-})
+    divs.map(div => div.onmouseup = function () {
+        mouseDown = false;
+    })
 
-divs.map(div=>div.onmouseover = function(){
-    if(mouseDown){
-        div.style.backgroundColor = color;
-    }
-})
+    divs.map(div => div.onmouseover = function () {
+        if (mouseDown) {
+            div.style.backgroundColor = color;
+        }
+    })
 
 }
 
-function reset(){
-    document.querySelectorAll('.art div').forEach(div=>{
+function reset() {
+    document.querySelectorAll('.art div').forEach(div => {
         div.style.backgroundColor = 'rgb(255,255,255)'
     })
+    changeColor();
 }
 
-function eraser(){
-    document.body.style.cursor = 'crosshair';
+function eraser() {
     changeColor('rgb(255,255,255)')
 }
 
-function save(){
-    html2canvas(container).then(function(canvas) {
+function save() {
+    html2canvas(container).then(function (canvas) {
         var link = document.createElement("a");
         document.body.appendChild(link);
         link.download = 'pixel-art.png';
@@ -117,6 +121,11 @@ function save(){
     });
 }
 
-function random(){
+function random() {
     fetch('https://x-colors.yurace.pro/api/random')
+        .then(response => response.json())
+        .then(data => {
+            changeColor(data.rgb)
+        }
+        )
 }
