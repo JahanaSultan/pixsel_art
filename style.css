@@ -45,14 +45,14 @@
 .container .toolbar .color {
     display: flex;
     flex-wrap: wrap;
+    /* gap: 1px; */
     justify-content: space-between;
-    
 }
 
 .container .toolbar .color div {
     width: 20px;
     aspect-ratio: 1/1;
-    margin: 1px;
+    border: 1px solid #000;
 }
 
 .buttons {

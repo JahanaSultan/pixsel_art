@@ -1,20 +1,21 @@
 let artSize = 0;
-let colorcount=0
+let colorcount = Math.floor(document.querySelector('.color').clientWidth / 20) * 2 
+let artheight = 0
 if (document.documentElement.clientWidth <= 500) {
     artSize = 20;
-    colorcount=44
+    artheight = 30
 }
 else if (document.documentElement.clientWidth <= 768) {
     artSize = 40;
-    colorcount=66
+    artheight = 40
 }
 else if (document.documentElement.clientWidth <= 1024) {
     artSize = 60;
-    colorcount=88
+    artheight = 50
 }
 else if (document.documentElement.clientWidth > 1024) {
     artSize = 80;
-    colorcount=116
+    artheight = 26
 }
 
 const fetchColors = async () => {
@@ -32,7 +33,7 @@ var squareSize = 100 / artSize;
 const createPixelArt = () => {
     container.innerHTML = '';
     for (var i = 0; i < artSize; i++) {
-        for (var j = 0; j < artSize; j++) {
+        for (var j = 0; j < 26; j++) {
             var square = document.createElement('div');
             square.style.width = squareSize + '%';
             container.appendChild(square);
@@ -52,13 +53,13 @@ const changeColor = (color = 'rgb(0,0,0)') => {
 
 const codes = (codes) => {
     tools.innerHTML = '';
-   
+
     codes.map(color => {
         let div = document.createElement('div');
-        div.addEventListener('click', () => { 
+        div.addEventListener('click', () => {
             document.querySelectorAll('.toolbar .color div').forEach(div => {
-               div.style.border = 'none'
-               div.style.borderRadius = '0' 
+                div.style.border = '1px solid #000'
+                div.style.borderRadius = '0'
             })
             changeColor(color.rgb)
             div.style.border = '2px solid #fff'
